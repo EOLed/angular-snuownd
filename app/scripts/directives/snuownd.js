@@ -1,12 +1,22 @@
+/* global SnuOwnd: true */
 'use strict';
 
-angular.module('angularSnuowndApp')
-  .directive('snuownd', function () {
+angular.module('achan.snuownd', []).
+  directive('snuownd', function () {
+    var snuownd = SnuOwnd.getParser();
     return {
-      template: '<div></div>',
-      restrict: 'E',
-      link: function postLink(scope, element, attrs) {
-        element.text('this is the snuownd directive');
+      restrict: 'AE',
+      link: function (scope, element, attrs) {
+        if (attrs.btfMarkdown) {
+          scope.$watch(attrs.snuownd, function (newVal) {
+            var html = newVal ? snuownd.render(newVal) : '';
+            element.html(html);
+          });
+        } else {
+          var html = snuownd.render(element.text());
+          element.html(html);
+        }
       }
     };
-  });
+  }
+);

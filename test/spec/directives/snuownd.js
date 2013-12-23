@@ -1,20 +1,17 @@
 'use strict';
 
 describe('Directive: snuownd', function () {
+  beforeEach(module('achan.snuownd'));
 
-  // load the directive's module
-  beforeEach(module('angularSnuowndApp'));
-
-  var element,
-    scope;
+  var element, scope;
 
   beforeEach(inject(function ($rootScope) {
     scope = $rootScope.$new();
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<snuownd></snuownd>');
+    element = angular.element('<snuownd>hello</snuownd>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the snuownd directive');
+    expect(element.text().trim()).toBe('hello');
   }));
 });

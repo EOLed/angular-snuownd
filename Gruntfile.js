@@ -29,7 +29,7 @@ module.exports = function (grunt) {
     watch: {
       js: {
         files: ['{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js'],
-        tasks: ['newer:jshint:all']
+        tasks: ['newer:jshint:all', 'karma']
       },
       jsTest: {
         files: ['test/spec/{,*/}*.js'],
@@ -344,6 +344,15 @@ module.exports = function (grunt) {
     'autoprefixer',
     'connect:test',
     'karma'
+  ]);
+
+  grunt.registerTask('test:watch', [
+    'clean:server',
+    'concurrent:test',
+    'autoprefixer',
+    'connect:test',
+    'karma',
+    'watch'
   ]);
 
   grunt.registerTask('build', [

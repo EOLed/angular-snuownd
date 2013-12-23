@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('angularSnuowndApp', []).config(function () { });
+angular.module('achan.snuownd', []).config(function () { });
