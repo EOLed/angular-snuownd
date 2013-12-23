@@ -7,7 +7,7 @@ angular.module('achan.snuownd', []).
     return {
       restrict: 'AE',
       link: function (scope, element, attrs) {
-        if (attrs.btfMarkdown) {
+        if (attrs.snuownd) {
           scope.$watch(attrs.snuownd, function (newVal) {
             var html = newVal ? snuownd.render(newVal) : '';
             element.html(html);
