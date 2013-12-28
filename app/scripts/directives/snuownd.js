@@ -6,13 +6,15 @@ angular.module('achan.snuownd', []).
     var snuownd = SnuOwnd.getParser();
     return {
       restrict: 'AE',
-      link: function (scope, element, attrs) {
-        if (attrs.snuownd) {
-          scope.$watch(attrs.snuownd, function (newVal) {
-            var html = newVal ? snuownd.render(newVal) : '';
-            element.html(html);
-          });
-        } else {
+      scope: {
+        'snuownd': '='
+      },
+      link: function (scope, element) {
+        scope.$watch('snuownd', function (newVal) {
+          element.html(snuownd.render(newVal));
+        });
+
+        if (element.text().trim() !== '') {
           var html = snuownd.render(element.text());
           element.html(html);
         }
