@@ -32,6 +32,20 @@ module.exports = function(config) {
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: false,
 
+    reporters: ['progress', 'coverage'],
+
+    preprocessors: {
+      'app/views/directives/*.html': 'html2js',
+      'app/scripts/**/*.js': ['coverage']
+    },
+
+    coverageReporter: {
+      reporters: [
+        { type: 'html', dir: 'coverage/' },
+        { type: 'text' }
+      ]
+    },
+
 
     // Start these browsers, currently available:
     // - Chrome
